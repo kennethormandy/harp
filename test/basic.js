@@ -72,11 +72,34 @@ describe("basic", function(){
       var agent = superagent.agent()
       agent.get('http://localhost:8100/some/missing/path').end(function(err, rsp){
         rsp.should.have.status(404)
+        rsp.headers.should.have.property("content-type", "text/html; charset=UTF-8")
         rsp.text.should.not.include("Kitchen Sink")
         rsp.text.should.include("Custom, Page Not Found")
         rsp.text.should.eql(contents.toString())
         done()
       })
+    })
+  })
+
+  it("should return CSS file", function(done){
+    fs.readFile(path.join(outputPath, "css", "main.css"), function(err, contents){
+      contents.toString().should.include("background")
+      var agent = superagent.agent()
+      agent.get('http://localhost:8100/css/main.css').end(function(err, rsp){
+        rsp.status.should.eql(200)
+        rsp.text.should.include("background")
+        rsp.text.should.eql(contents.toString())
+        done()
+      })
+    })
+  })
+
+  it("should return proper mime type on 404 page", function(done){
+    var agent = superagent.agent()
+    agent.get('http://localhost:8100/some/missing/path.css').end(function(err, rsp){
+      rsp.should.have.status(404)
+      rsp.headers.should.have.property("content-type", "text/html; charset=UTF-8")
+      done()
     })
   })
 
@@ -92,6 +115,14 @@ describe("basic", function(){
         rsp.text.should.eql(contents.toString())
         done()
       })
+    })
+  })
+
+  it("should not return file starting with underscore", function(done){
+    var agent = superagent.agent()
+    agent.get('http://localhost:8100/shared/_nav.jade').end(function(err, rsp){
+      rsp.status.should.eql(404)
+      done()
     })
   })
 

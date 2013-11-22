@@ -14,7 +14,7 @@ Pre-compilers are becoming extremely powerful and shipping front-ends as static 
 
 - easy installation, easy to use
 - fast and lightweight
-- robust (clean urls, intelegent path redirects)
+- robust (clean urls, intelligent path redirects)
 - built in pre-processing
 - first-class layout and partial support
 - built in LRU caching in production mode
@@ -33,7 +33,7 @@ Pre-compilers are becoming extremely powerful and shipping front-ends as static 
 ### Resources
 
 - **Server Documentation** - [harpjs.com/docs/](http://harpjs.com/docs/)
-- **Platform Documentation** - [docs.harp.io/](https://docs.harp.io/)
+- **Platform Documentation** - [harp.io/docs](https://harp.io/docs)
 - **Source Code** - [github.com/sintaxi/harp](https://github.com/sintaxi/harp)
 
 
@@ -119,7 +119,7 @@ var app = express();
 
 app.configure(function(){
   app.use(express.static(__dirname + "/public"));
-  app.use(harp.pipeline(__dirname + "/public"));
+  app.use(harp.mount(__dirname + "/public"));
 });
 ```
 
