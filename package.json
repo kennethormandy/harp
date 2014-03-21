@@ -45,7 +45,7 @@
     "nixt": "~0.3.0"
   },
   "scripts": {
-    "test": "node node_modules/mocha/bin/mocha --reporter spec spec -t 5000"
+    "test": "node node_modules/mocha/bin/mocha --reporter spec -t 10000"
   },
   "license": "MIT",
   "preferGlobal": true,

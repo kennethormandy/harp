@@ -10,7 +10,6 @@ describe("harp init", function() {
   })
 
   it("downloads the default boilerplate if it's not set", function(done) {
-    this.timeout(10000);
     nixt()
       .run('./bin/harp init /tmp/harp')
       .stdout(/Downloading.*harp-boilerplates\/default/)
@@ -23,7 +22,6 @@ describe("harp init", function() {
   })
 
   it("defaults to the harp-boilerplates github org when given a shorthand pattern", function(done) {
-    this.timeout(10000);
     nixt()
       .run('./bin/harp init /tmp/harp -b hb-start')
       .stdout(/Downloading.*harp-boilerplates\/hb-start/)
@@ -32,7 +30,6 @@ describe("harp init", function() {
   })
 
   it("honors -b option when given a user/repo pattern", function(done) {
-    this.timeout(10000);
     nixt()
       .run('./bin/harp init /tmp/harp -b zeke/harp-sample')
       .stdout(/Downloading.*zeke\/harp-sample/)
